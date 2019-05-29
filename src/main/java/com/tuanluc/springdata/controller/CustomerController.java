@@ -1,7 +1,7 @@
 package com.tuanluc.springdata.controller;
 
 import com.tuanluc.springdata.common.RSSInterface;
-import com.tuanluc.springdata.rss.VnExpressRSS;
+import com.tuanluc.springdata.common.RSSHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +19,7 @@ public class CustomerController {
     private CustomerRepository customerRepository;
     @RequestMapping(value={"/customer-list"})
     public String listCustomer(Model model) {
-        RSSInterface rss = new VnExpressRSS();
+        RSSInterface rss = new RSSHelper();
         model.addAttribute("listCustomer", customerRepository.findAll());
         return "customer-list";
     }

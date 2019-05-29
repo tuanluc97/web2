@@ -1,28 +1,36 @@
 package com.tuanluc.springdata.controller;
 
+import com.tuanluc.springdata.common.Constant;
 import com.tuanluc.springdata.common.RSSInterface;
-import com.tuanluc.springdata.rss.VnExpressRSS;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.tuanluc.springdata.common.RSSHelper;
+import com.tuanluc.springdata.rss.HandlerRSS;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.tuanluc.springdata.entities.Customer;
-import com.tuanluc.springdata.repository.CustomerRepository;
 
-import java.util.Optional;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class HomeController {
 
     @RequestMapping(value = {"/", "/home"})
+    public String getHome(Model model) {
+        Map<String, String> map = new HashMap<>();
+        for (String item:Constant.LIST_RSS_VNEXPRESS()) {
+            map.put(item, RSSHelper.getTitleFormRSS(item));
+        }
+        model.addAttribute("rssMap", map);
+        return "home";
+    }
+
+    @RequestMapping(value = {"/news"})
     public String listRss(Model model) {
-        RSSInterface rss = new VnExpressRSS();
+        RSSInterface rss = new HandlerRSS("");
         model.addAttribute("logo", rss.getUrlLogo());
         model.addAttribute("date", rss.getDate());
         model.addAttribute("title", rss.getTitle());
         model.addAttribute("listRss", rss.getListItem());
-        return "home";
+        return "news";
     }
 }

@@ -1,23 +1,23 @@
 package com.tuanluc.springdata.rss;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
-import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import com.tuanluc.springdata.common.RSSInterface;
 import com.tuanluc.springdata.entities.ItemRSS;
 
-public class VnExpressRSS implements RSSInterface {
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
-    public VnExpressRSS() {
+public class HandlerRSS implements RSSInterface {
+
+    public HandlerRSS(String urlRss) {
+        this.urlRss = urlRss;
         this.executeRSS();
     }
+    private String urlRss;
 
     private String urlLogo;
 
@@ -57,8 +57,7 @@ public class VnExpressRSS implements RSSInterface {
 
     private void executeRSS() {
         try {
-            String url = "https://vnexpress.net/rss/tin-moi-nhat.rss";
-            URL feedUrl = new URL(url);
+            URL feedUrl = new URL(this.urlRss);
             SyndFeedInput input = new SyndFeedInput();
             SyndFeed feed = input.build(new XmlReader(feedUrl));
             this.title = feed.getImage().getTitle();
