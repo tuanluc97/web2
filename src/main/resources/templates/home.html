@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Đọc báo</title>
+    <style>
+        table, th, td, tr {
+            border: 1px solid black;
+        }
+        td {
+            padding-right: 30px;
+        }
+    </style>
+</head>
+<body>
+<h1>Tin tức</h1>
+<!--<a th:href="@{/customer-save}">Add Customer</a>-->
+<br />
+<br />
+<a class=""><img th:src="${logo}" alt="VnExpress"></a>
+<h3 th:text="${title}"></h3>
+<h4 th:text="${date}"></h4>
+<table>
+    <tr>
+        <th>stt</th>
+        <th>Title</th>
+        <th>des</th>
+        <th>date</th>
+    </tr>
+
+    <th:block th:each="item,iterator  : ${listRss}">
+        <tr>
+            <td><p th:text="${iterator.index}"></p></td>
+            <td><a th:href="${item.getLink()}" th:text="${item.getTitle()}"></a></td>
+            <td><p th:text="${item.getDescription()}"></p></td>
+            <td><p th:text="${item.getPubDate()}"></p></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
