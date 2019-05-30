@@ -1,7 +1,9 @@
 package com.tuanluc.springdata.common;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Constant {
     public static final class RSS {
@@ -37,4 +39,23 @@ public class Constant {
         list.add(RSS.GAMEK.THI_TRUONG);
         return list;
     }
+
+    public static final  List<Map<String, String>> LIST_ALL_RSS(){
+        List listRss = new ArrayList();
+        Map<String, String> map1 = new HashMap<>();
+        for (String item:Constant.LIST_RSS_VNEXPRESS()) {
+            map1.put(item, RSSHelper.getTitleFormRSS(item));
+        }
+        listRss.add(map1);
+
+        Map<String, String> map2 = new HashMap<>();
+        for (String item:Constant.LIST_RSS_GAMEK()) {
+            map2.put(item, RSSHelper.getTitleFormRSS(item));
+        }
+        listRss.add(map2);
+
+        return listRss;
+    }
+
+
 }

@@ -6,6 +6,8 @@ import com.tuanluc.springdata.common.RSSHelper;
 import com.tuanluc.springdata.rss.HandlerRSS;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.HashMap;
@@ -16,16 +18,12 @@ public class HomeController {
 
     @RequestMapping(value = {"/", "/home"})
     public String getHome(Model model) {
-        Map<String, String> map = new HashMap<>();
-        for (String item:Constant.LIST_RSS_VNEXPRESS()) {
-            map.put(item, RSSHelper.getTitleFormRSS(item));
-        }
-        model.addAttribute("rssMap", map);
+        model.addAttribute("listAll", Constant.LIST_ALL_RSS());
         return "home";
     }
 
-    @RequestMapping(value = {"/news"})
-    public String listRss(Model model) {
+    /*@RequestMapping(value = {"/newsss"})
+    public String listRssss(Model model) {
         RSSInterface rss = new HandlerRSS("");
         model.addAttribute("logo", rss.getUrlLogo());
         model.addAttribute("date", rss.getDate());
@@ -33,4 +31,10 @@ public class HomeController {
         model.addAttribute("listRss", rss.getListItem());
         return "news";
     }
+
+    @RequestMapping("/news")
+    public String listRss() {
+        return "news";
+    }*/
+
 }

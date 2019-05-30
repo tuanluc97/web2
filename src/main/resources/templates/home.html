@@ -3,8 +3,18 @@
     <title>Trang chủ</title>
 </head>
 <body>
-<th:block th:each="item,iterator  : ${listRss}">
-
+<!--<form action="#" data-th-action="@{/action/edit}" data-th-object="${model}" method="post">
+    <button type="submit" name="action" value="save">save</button>
+    <button type="submit" name="action" value="cancel">cancel</button>
+</form>-->
+<a th:text="RSS" th:href="@{/rss-list}" ></a>
+<th:block th:each="rss : ${listAll}">
+    <tr th:each="instance : ${rss}">
+        <a th:text="${instance.value}" th:href="${instance.key}"></a>
+        <br/>
+    </tr>
+    <br/>
+    <br/>
 </th:block>
 </body>
 </html>

@@ -20,7 +20,7 @@ public class RSSHelper {
             SyndFeedInput input = new SyndFeedInput();
             SyndFeed feed = input.build(new XmlReader(feedUrl));
             String title = feed.getTitle();
-            return title.replace("RSS","");
+            return title;
         } catch (Exception ex) {
             ex.printStackTrace();
         }

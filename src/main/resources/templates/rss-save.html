@@ -1,0 +1,14 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot - Hibernate</title>
+</head>
+<body>
+<a th:href="@{/rss-list}">List RSS</a><br />
+<h1>Add new RSS:</h1>
+<form th:action="@{/saveRss}" method="POST" th:object="${rssData}">
+    Title: <input th:field="*{title}"/> <br/> <br/>
+    Url: <input th:field="*{url}"/> <br/> <br/>
+    <input type="submit" value="Submit" />
+</form>
+</body>
+</html>

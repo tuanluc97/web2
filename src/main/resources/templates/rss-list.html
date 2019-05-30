@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot - Hibernate</title>
+    <style>
+        table, th, td, tr {
+            border: 1px solid black;
+        }
+        td {
+            padding-right: 30px;
+        }
+    </style>
+</head>
+<body>
+<h1>List RSS:</h1>
+<a th:href="@{/rss-save}">Add Rss Data</a>
+<br />
+<br />
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Url</th>
+        <th>View</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="rss : ${listRssData}">
+        <tr>
+            <td><p th:text="${rss.id}"></p></td>
+            <td><p th:text="${rss.title}"></p></td>
+            <td><p th:text="${rss.url}"></p></td>
+            <td><a th:href="@{/rss-view/} + ${rss.id}">View</a></td>
+            <td><a th:href="@{/rss-update/} + ${rss.id}">Edit</a></td>
+            <td><a th:href="@{/deleteRss/} + ${rss.id}">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

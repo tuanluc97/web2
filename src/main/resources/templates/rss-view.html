@@ -3,21 +3,21 @@
     <title>Spring Boot - Hibernate</title>
 </head>
 <body>
-<a th:href="@{/customer-list}">List Customer</a>
+<a th:href="@{/rss-list}">List Rss Data</a>
 <br/> <br/>
 
 <table>
     <tr>
         <td>Id: </td>
-        <td><p th:text="${customer.id}"/></td>
+        <td><p th:text="${rssData.id}"/></td>
     </tr>
     <tr>
         <td>Name: </td>
-        <td><p th:text="${customer.name}"/></td>
+        <td><p th:text="${rssData.title}"/></td>
     </tr>
     <tr>
         <td>Address: </td>
-        <td><p th:text="${customer.address}"/></td>
+        <td><p th:text="${rssData.url}"/></td>
     </tr>
 </table>
 </body>
